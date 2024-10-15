@@ -1,0 +1,26 @@
+name: app_dev_hw03
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.2  # For state management
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/cow.png
+    - assets/pig.png
+    - assets/chicken.png
+    - assets/sheep.png
+    - assets/cards/back.png 

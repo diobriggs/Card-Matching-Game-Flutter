@@ -32,28 +32,43 @@ class GameScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Animal Matching Game'),
       ),
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4, // Change based on your layout preference
-        ),
-        itemCount: gameState.cards.length,
-        itemBuilder: (context, index) {
-          final card = gameState.cards[index];
-          return GestureDetector(
-            onTap: () => gameState.flipCard(index),
-            child: Card(
-              child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(card.isFaceUp ? card.image : 'assets/cards/back.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Time Left: ${gameState.timeLeft} seconds',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-          );
-        },
+          ),
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4, // Change based on your layout preference
+              ),
+              itemCount: gameState.cards.length,
+              itemBuilder: (context, index) {
+                final card = gameState.cards[index];
+                return GestureDetector(
+                  onTap: () => gameState.flipCard(index),
+                  child: Card(
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(card.isFaceUp
+                              ? card.image
+                              : 'assets/cards/back.png'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
